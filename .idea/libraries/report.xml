@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="report">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Parasoft.Dottest.Examples.Bank/report/report.zip!/" />
+      <root url="jar://$PROJECT_DIR$/Parasoft.Dottest.Examples.Bank/report/report (1).zip!/" />
+      <root url="jar://$PROJECT_DIR$/Parasoft.Dottest.Examples.Bank/report/report (2).zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
