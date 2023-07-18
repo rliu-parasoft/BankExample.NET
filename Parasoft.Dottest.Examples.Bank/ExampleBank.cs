@@ -17,7 +17,7 @@ namespace Parasoft.Dottest.Examples.Bank
             Bank bank = new Bank();
             //parasoft-begin-suppress CS.INTER.ITT
             bank.AddCurrency(new CurrencyInfo("USD", "$", "{1}{0}"));
-            bank.AddCurrency(new CurrencyInfo("EUR", "€", "{1}{0}"));
+            // bank.AddCurrency(new CurrencyInfo("EUR", "¥", "{1}{0}"));
             bank.AddCurrency(new CurrencyInfo("JPY", "¥", "{1}{0}"));
             bank.AddCurrency(new CurrencyInfo("PLN", "zł", "{0} {1}"));
             bank.AddCurrency(new CurrencyInfo("ISK", "kr", "{0} {1}"));
