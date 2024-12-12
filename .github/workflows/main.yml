@@ -37,7 +37,7 @@ jobs:
         with:
           installDir: 'E:\Parasoft\Products\DOTTEST\2024.1'
           testConfig: '.\dottest_settings.properties'
-          solution: '.\src\*.sln'
+          solution: '.\BankExample.NET.sln'
           settings: '.\localsettings.properties'
           reportDir: '.\reports\static'
           sarifMode: 'legacy'
