@@ -1,0 +1,53 @@
+name: dotTEST Simple Workflow
+
+# Specifies the name of the GitHub events that trigger the workflow.
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch.
+  push:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab.
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel.
+jobs:
+  # Specifies the name of the job.
+  RunCodeAnalysisWithDotTEST:
+    # Specifies required permissions for upload-sarif action
+    permissions:
+      # required for all workflows
+      security-events: write
+      # only required for workflows in private repositories
+      actions: read
+      contents: read
+    
+    # Specifies the type of runner that the job will run on.
+    runs-on: self-hosted
+
+    # Steps represent a sequence of tasks that will be executed as part of the job.
+    steps:
+      # Checks out your repository under $GITHUB_WORKSPACE, so that your job can access it.
+      - uses: actions/checkout@v3
+
+      # Runs code analysis with dotTEST.
+      - name: Run Parasoft dotTEST
+        id: dottest
+        # Specifies the action to run.
+        uses: parasoft/run-dottest-action@2.0.1
+        with:
+          installDir: 'E:\Parasoft\Products\DOTTEST\2024.1'
+
+        # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.
+      - name: Upload results (SARIF)
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: ${{ steps.dottest.outputs.report }}
+      
+      # Uploads an archive that includes all report files (.xml, .html, .sarif).
+      - name: Archive reports
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: DottestReports
+          path: ${{ steps.dottest.outputs.reportDir }}/*.*
