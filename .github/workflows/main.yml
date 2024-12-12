@@ -36,6 +36,11 @@ jobs:
         uses: parasoft/run-dottest-action@2.0.1
         with:
           installDir: 'E:\Parasoft\Products\DOTTEST\2024.1'
+          testConfig: '.\dottest_settings.properties'
+          solution: '.\src\*.sln'
+          settings: '.\localsettings.properties'
+          reportDir: '.\reports\static'
+          sarifMode: 'legacy'
 
         # Uploads analysis results in the SARIF format, so that they are displayed as GitHub code scanning alerts.
       - name: Upload results (SARIF)
